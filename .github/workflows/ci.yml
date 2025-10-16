@@ -5,7 +5,10 @@ on:
     branches: [ main ]
 
 jobs:
-  lint-and-format:
+  lint-and-format-front:
+    defaults:
+      run:
+        working-directory: front
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -15,7 +18,24 @@ jobs:
         node-version: 24.2.0
     - name: Install deps
       run: npm i
-    - name: Check front
-      run: cd front && npm run format:check && npn run lint:check
-    - name: Check back
-      run: cd back && npm run format:check && npn run lint:check
+    - name: Check format
+      run: npm run format:check 
+    - name: Check lint
+      run: npn run lint:check
+  lint-and-format-back:
+    defaults:
+      run:
+        working-directory: back
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24.2.0
+    - name: Install deps
+      run: npm i
+    - name: Check format
+      run: npm run format:check 
+    - name: Check lint
+      run: npn run lint:check
