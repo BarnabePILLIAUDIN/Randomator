@@ -6,7 +6,7 @@ This is an Hono api to genrate on or more random numbers between a min and a max
 
 ```sh
 npm install
-npm run dev
+export CORS=[YOUR_CORS] && npm run dev
 ```
 
 ## Routes
