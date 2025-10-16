@@ -5,15 +5,15 @@ import { cors } from "hono/cors"
 const DEFAULT_MIN = 0
 const DEFAULT_MAX = 100
 const DEFAULT_LENGTH = 5
-const RADIX=10
+const RADIX = 10
 const MISSING_CORS_ERROR = "Missing env var for cors"
 const RANDOM_ROUTES = "/random"
 
 const generateRandom = (min: number, max: number) =>
   Math.ceil(min + Math.random() * (max - min))
 const extractMinAndMax = (ctx: Context) => {
-  const inputMin = Number.parseInt(ctx.req.query("min") ?? "",RADIX)
-  const inputMax = Number.parseInt(ctx.req.query("max") ?? "",RADIX)
+  const inputMin = Number.parseInt(ctx.req.query("min") ?? "", RADIX)
+  const inputMax = Number.parseInt(ctx.req.query("max") ?? "", RADIX)
 
   const min = !Number.isNaN(inputMin) ? inputMin : DEFAULT_MIN
   const max = !Number.isNaN(inputMax) ? inputMax : DEFAULT_MAX
