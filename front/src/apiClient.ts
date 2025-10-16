@@ -17,7 +17,9 @@ const createApiClient = () => {
     generateNumber: (min?: number, max?: number) =>
       httpClient.get(`${RANDOM_API_ROUTE}?min=${min ?? ""}&max=${max ?? ""}`),
     generateManyNumbers: (length: number, min?: number, max?: number) =>
-      httpClient.get(`${RANDOM_API_ROUTE}/${length}?min=${min ?? ""}&max=${max ?? ""}`),
+      httpClient.get(
+        `${RANDOM_API_ROUTE}/${length}?min=${min ?? ""}&max=${max ?? ""}`,
+      ),
   }
 }
 
