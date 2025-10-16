@@ -1,0 +1,18 @@
+# Only to test locally
+services:
+  api:
+    build:
+      context: back
+    ports: 
+      - 3000:3000
+    environment:
+      - CORS=http://localhost
+
+  front:
+    container_name: front
+    build:
+      context: front
+      args:
+        - VITE_API_URL=http://localhost:3000
+    ports:
+      - 80:80
