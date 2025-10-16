@@ -21,7 +21,7 @@ jobs:
     - name: Check format
       run: npm run format:check 
     - name: Check lint
-      run: npn run lint:check
+      run: npm run lint:check
   lint-and-format-back:
     defaults:
       run:
@@ -38,4 +38,4 @@ jobs:
     - name: Check format
       run: npm run format:check 
     - name: Check lint
-      run: npn run lint:check
+      run: npm run lint:check
