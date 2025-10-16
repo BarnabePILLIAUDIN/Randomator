@@ -8,7 +8,15 @@ type DisplayResultProps = {
 const DisplayResultNumber = ({ number,className }: { number: number, className?: string }) => (
   <div className={clsx(className,`text-slate-600 text-xl`)}> Your Number is {number}</div>
 )
-const DisplayResultArray = ({ numbers, className }: { numbers: number[], className?: string }) => (<div className={clsx(className, "")}>Array { numbers}</div>)
+const DisplayResultArray = ({ numbers, className }: { numbers: number[], className?: string }) => {
+
+  return (
+    <div className={clsx( "text-slate-600", className)}>
+      <p>Your number are: </p>
+      <p>{numbers.join(", ")}</p>
+    </div>
+  )
+}
 
 const DisplayResult = ({ result, className }: DisplayResultProps) => {
   if (!result) {
