@@ -1,18 +1,23 @@
-import { MISSING_API_ROUTE_ERROR, RANDOM_API_ROUTE } from "@/constants";
-import axios from "axios";
+import axios from "axios"
+
+import { MISSING_API_ROUTE_ERROR, RANDOM_API_ROUTE } from "@/constants"
 
 const createApiClient = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
-  if (!apiUrl ) {
+  const apiUrl = import.meta.env.VITE_API_URL
+
+  if (!apiUrl) {
     throw new Error(MISSING_API_ROUTE_ERROR)
   }
+
   const httpClient = axios.create({
-    baseURL: apiUrl
-  });
+    baseURL: apiUrl,
+  })
 
   return {
-    generateNumber: (min?: number, max?: number) => httpClient.get(`${RANDOM_API_ROUTE}?min=${min ?? ""}&max=${max ?? ""}`),
-    generateManyNumbers: (length: number, min?: number, max?: number) => httpClient.get(`${RANDOM_API_ROUTE}/${length}?${min ?? ""}&${max ?? ""}`)
+    generateNumber: (min?: number, max?: number) =>
+      httpClient.get(`${RANDOM_API_ROUTE}?min=${min ?? ""}&max=${max ?? ""}`),
+    generateManyNumbers: (length: number, min?: number, max?: number) =>
+      httpClient.get(`${RANDOM_API_ROUTE}/${length}?min=${min ?? ""}&max=${max ?? ""}`),
   }
 }
 
