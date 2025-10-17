@@ -49,7 +49,7 @@ const NumberSelector = () => {
         }
 
         const response: ApiResponse = showExtendedForm
-          ? await apiClient.generateManyNumbers(resultLength)
+          ? await apiClient.generateManyNumbers(resultLength, min, max)
           : await apiClient.generateNumber(min, max)
         const { success, result: apiResult } = response.data
 

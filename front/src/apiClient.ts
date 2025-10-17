@@ -3,7 +3,8 @@ import axios from "axios"
 import { MISSING_API_ROUTE_ERROR, RANDOM_API_ROUTE } from "@/constants"
 
 const createApiClient = () => {
-  const apiUrl = import.meta.env.VITE_API_URL
+  const runtimeConfig = window.RUNTIME_CONFIG || {}
+  const apiUrl = runtimeConfig.API_URL || import.meta.env.VITE_API_URL
 
   if (!apiUrl) {
     throw new Error(MISSING_API_ROUTE_ERROR)
