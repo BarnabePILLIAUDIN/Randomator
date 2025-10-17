@@ -39,3 +39,24 @@ jobs:
       run: npm run format:check 
     - name: Check lint
       run: npm run lint:check
+  build-images-and-push:
+    runs-on: ubuntu-latest
+    needs: [lint-and-format-front, lint-and-format-back]
+    environment: prod
+    env:
+      CORS: ${{secrets.BACK_CORS}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+          password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
+      - name: Build front image
+        run: docker build --build-arg CORS=${{ secrets.FRONT_VITE_API_URL }} -t ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:front-latest ./front
+      - name: Build back image
+        run: docker build -t ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:back-latest ./back
+      - name: Push front image
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:back-latest
+      - name: Push back image
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:back-latest
