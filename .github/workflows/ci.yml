@@ -57,6 +57,6 @@ jobs:
       - name: Build back image
         run: docker build -t ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:back-latest ./back
       - name: Push front image
-        run: docker push ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:back-latest
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:front-latest
       - name: Push back image
         run: docker push ${{ secrets.DOCKER_REGISTRY_USERNAME }}/randomator:back-latest
